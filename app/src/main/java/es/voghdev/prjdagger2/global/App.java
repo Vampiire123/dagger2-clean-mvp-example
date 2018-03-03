@@ -15,6 +15,7 @@
  */
 package es.voghdev.prjdagger2.global;
 
+import android.app.Activity;
 import android.app.Application;
 import android.support.annotation.VisibleForTesting;
 
@@ -22,14 +23,20 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
 import es.voghdev.prjdagger2.global.di.MainModule;
 import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.ui.picasso.PicassoImageCache;
 
-public class App extends Application {
+public class App extends Application implements HasActivityInjector {
     public static final String IMAGES_DIR = "images";
 
+    @Inject DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
     private RootComponent component;
     private PicassoImageCache cache;
     private MainModule mainModule;
@@ -42,11 +49,7 @@ public class App extends Application {
     }
 
     private void initializeDependencyInjector() {
-        mainModule = new MainModule(this);
-        component = DaggerRootComponent.builder()
-                .mainModule(mainModule)
-                .build();
-        component.inject(this);
+        DaggerRootComponent.create().inject(this);
     }
 
     public void initializeImageCache() {
@@ -80,5 +83,10 @@ public class App extends Application {
     @VisibleForTesting
     public void setComponent(RootComponent component) {
         this.component = component;
+    }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 }

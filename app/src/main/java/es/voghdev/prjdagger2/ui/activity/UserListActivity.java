@@ -32,6 +32,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.InjectView;
+import dagger.android.AndroidInjection;
 import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.App;
 import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
@@ -83,12 +84,12 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        component().inject(this);
+        AndroidInjection.inject(this);
 
-        adapter = new RVRendererAdapter<User>(
+        adapter = new RVRendererAdapter(
                 LayoutInflater.from(this),
                 new UserRendererBuilder(this, mUserClickListener),
-                new ListAdapteeCollection<User>(new ArrayList<User>())
+                new ListAdapteeCollection(new ArrayList<User>())
         );
 
         presenter = new UserListPresenter(this, getUsersInteractor);
@@ -145,16 +146,5 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     @Override
     public void showUserClickedMessage(User user) {
         showUserClicked.show(user);
-    }
-
-    private UserListComponent component() {
-        if (component == null) {
-            component = DaggerUserListComponent.builder()
-                    .rootComponent(((App) getApplication()).getComponent())
-                    .userListModule(new UserListModule(getApplicationContext()))
-                    .mainModule(((App) getApplication()).getMainModule())
-                    .build();
-        }
-        return component;
     }
 }

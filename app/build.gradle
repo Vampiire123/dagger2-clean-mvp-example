@@ -78,9 +78,11 @@ dependencies {
     // Google
     compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support:design:25.4.0'
-    compile 'com.google.dagger:dagger:2.0.2'
-    apt 'com.google.dagger:dagger-compiler:2.0.2'
-    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.google.dagger:dagger:2.11'
+    compile 'com.google.dagger:dagger-android:2.11'
+    compile 'com.google.dagger:dagger-android-support:2.11'
+    apt 'com.google.dagger:dagger-compiler:2.11'
+
 
     // Square
     compile 'com.squareup.retrofit:retrofit:1.9.0'
