@@ -38,8 +38,6 @@ public class UserListPresenter extends AbsUserListPresenter {
     public UserListPresenter(Context ctx, GetUsersInteractor getUsersInteractor) {
         context = ctx;
         interactor = getUsersInteractor;
-
-        getComponent().inject(this);
     }
 
     @Override
@@ -90,9 +88,5 @@ public class UserListPresenter extends AbsUserListPresenter {
     @Override
     public void onUserRowClicked(User user) {
         view.showUserClickedMessage(user);
-    }
-
-    protected RootComponent getComponent() {
-        return ((App) context.getApplicationContext()).getComponent();
     }
 }

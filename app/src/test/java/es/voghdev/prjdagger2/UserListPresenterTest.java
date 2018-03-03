@@ -212,8 +212,8 @@ public class UserListPresenterTest extends BaseUnitTest {
 
     private void givenAMockedEnvironment() {
         when(mockContext.getApplicationContext()).thenReturn(mockApp);
-        when(mockApp.getComponent()).thenReturn(mockComponent);
-        when(mockApp.getMainModule()).thenReturn(mockModule);
+//        when(mockApp.getComponent()).thenReturn(mockComponent);
+//        when(mockApp.getMainModule()).thenReturn(mockModule);
     }
 
     private UserListPresenter givenAMockedPresenter() {

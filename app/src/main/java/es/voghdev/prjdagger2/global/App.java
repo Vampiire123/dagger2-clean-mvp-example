@@ -28,18 +28,13 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
-import es.voghdev.prjdagger2.global.di.DaggerRootComponent;
-import es.voghdev.prjdagger2.global.di.MainModule;
-import es.voghdev.prjdagger2.global.di.RootComponent;
 import es.voghdev.prjdagger2.ui.picasso.PicassoImageCache;
 
 public class App extends Application implements HasActivityInjector {
     public static final String IMAGES_DIR = "images";
 
     @Inject DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
-    private RootComponent component;
     private PicassoImageCache cache;
-    private MainModule mainModule;
 
     @Override
     public void onCreate() {
@@ -49,7 +44,7 @@ public class App extends Application implements HasActivityInjector {
     }
 
     private void initializeDependencyInjector() {
-        DaggerRootComponent.create().inject(this);
+        //DaggerApplicationComponent.create().inject(this);
     }
 
     public void initializeImageCache() {
@@ -67,23 +62,18 @@ public class App extends Application implements HasActivityInjector {
         //Picasso.setSingletonInstance(picasso);
     }
 
-    public MainModule getMainModule() {
-        return mainModule;
-    }
+//    public MainModule getMainModule() {
+//        return mainModule;
+//    }
 
     public File getPicturesDir() {
         File f = getExternalFilesDir(IMAGES_DIR);
         return f;
     }
 
-    public RootComponent getComponent() {
-        return component;
-    }
-
-    @VisibleForTesting
-    public void setComponent(RootComponent component) {
-        this.component = component;
-    }
+//    public RootComponent getComponent() {
+//        return component;
+//    }
 
     @Override
     public AndroidInjector<Activity> activityInjector() {

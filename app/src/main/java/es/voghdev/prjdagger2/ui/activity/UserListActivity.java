@@ -34,10 +34,7 @@ import javax.inject.Inject;
 import butterknife.InjectView;
 import dagger.android.AndroidInjection;
 import es.voghdev.prjdagger2.R;
-import es.voghdev.prjdagger2.global.App;
-import es.voghdev.prjdagger2.global.di.DaggerUserListComponent;
 import es.voghdev.prjdagger2.global.di.UserListComponent;
-import es.voghdev.prjdagger2.global.di.UserListModule;
 import es.voghdev.prjdagger2.global.model.User;
 import es.voghdev.prjdagger2.interactor.GetUsersInteractor;
 import es.voghdev.prjdagger2.ui.presenter.UserListPresenter;
@@ -58,12 +55,12 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
 
     AbsUserListPresenter presenter;
 
-    @Inject
+//    @Inject
     GetUsersInteractor getUsersInteractor;
 
-    @Inject
+//    @Inject
     ShowUserClicked showUserClicked;
-    @Inject
+//    @Inject
     ShowUserGreeting showUserGreeting;
 
     private UserListComponent component;
@@ -84,7 +81,7 @@ public class UserListActivity extends BaseActivity implements AbsUserListPresent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AndroidInjection.inject(this);
+        AndroidInjection.inject(this); // This can be even moved to BaseActivity!
 
         adapter = new RVRendererAdapter(
                 LayoutInflater.from(this),
