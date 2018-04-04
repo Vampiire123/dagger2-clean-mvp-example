@@ -27,7 +27,7 @@ public class AndroidResLocator implements ResLocator {
 
     Context context;
 
-    public AndroidResLocator(DetailActivity context){
+    public AndroidResLocator(DetailActivity context) {
         context = context;
     }
 
@@ -38,8 +38,8 @@ public class AndroidResLocator implements ResLocator {
 
     @Override
     public List<String> getStringArray(int resID) {
-        return (Arrays.asList(context.getResources().getStringArray(resID)).isEmpty()) ?
-                Collections.<String>emptyList() :
-                Arrays.asList(context.getResources().getStringArray(resID));
+        return (Arrays.asList(context.getResources().getStringArray(resID)).isEmpty())
+                ? Collections.<String>emptyList()
+                : Arrays.asList(context.getResources().getStringArray(resID));
     }
 }

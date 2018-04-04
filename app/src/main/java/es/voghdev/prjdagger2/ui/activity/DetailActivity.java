@@ -2,7 +2,6 @@ package es.voghdev.prjdagger2.ui.activity;
 
 import android.os.Bundle;
 
-import es.voghdev.prjdagger2.ui.activity.BaseActivity;
 import es.voghdev.prjdagger2.R;
 import es.voghdev.prjdagger2.global.AndroidResLocator;
 import es.voghdev.prjdagger2.ui.presenter.DetailPresenter;
